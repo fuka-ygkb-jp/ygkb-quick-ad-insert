@@ -1,0 +1,15 @@
+body {
+    padding: 10px;
+}
+
+/* テキストボックス */
+#tags {
+    font-family: monospace;
+}
+
+/* ボタンの陰 */
+.withShadow {
+    box-shadow: 2px 2px 1px #000;
+    -webkit-box-shadow: 2px 2px 1px #000;
+    -moz-box-shadow: 2px 2px 1px #000;
+}
