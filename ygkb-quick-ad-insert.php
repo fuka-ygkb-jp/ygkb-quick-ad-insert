@@ -3,7 +3,7 @@
 Plugin Name: Ygkb Quick Ad Insert
 Plugin URI: https://ygkb.jp/apps/quick-ad-insert
 Description: ビジュアルエディタに「広告タグを挿入する」ボタンを追加します。
-Version: 1.0
+Version: 1.1
 Author: 有限工房
 Author URI: https://ygkb.jp/
 License: GPLv2 or later
@@ -28,17 +28,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /* ボタン登録 */
-function button_register( $buttons ) {
-	$buttons[] = 'input_text';
+function ygkb_qai_button_regist( $buttons ) {
+	$buttons[] = 'ygkb_qai_button';
 
 	return $buttons;
 }
-add_filter( 'mce_buttons', 'button_register' );
+add_filter( 'mce_buttons', 'ygkb_qai_button_regist' );
 
-/* js登録 */
-function mce_plugin( $plugin_array ) {
-	$plugin_array['custom_button_script'] = plugins_url( 'editor_plugin.js', __FILE__ );
+/* スクリプト登録 */
+function ygkb_qai_button_script( $plugin_array ) {
+    //memo: editor_plugin.js の tinymce.PluginManager.add() の第一引数とキー名を合わせること
+	$plugin_array['ygkb_qai'] = plugins_url( 'editor_plugin.js', __FILE__ );
 
 	return $plugin_array;
 }
-add_filter( 'mce_external_plugins', 'mce_plugin' );
+add_filter( 'mce_external_plugins', 'ygkb_qai_button_script' );
